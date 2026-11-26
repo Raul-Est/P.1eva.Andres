@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { isAuthenticated } from './services/authService';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
@@ -91,6 +93,7 @@ export default function App() {
         
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }
