@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { login } from '../services/authService';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +20,7 @@ export default function LoginPage() {
     try {
       await login(username, password);
       toast.success('Bienvenido');
-      navigate('/dashboard');
+      window.location.href = '/dashboard';
     } catch (error) {
       toast.error(error.msg || 'Error al login');
     } finally {
