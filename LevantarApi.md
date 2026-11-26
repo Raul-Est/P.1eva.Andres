@@ -4,6 +4,19 @@ git clone https://github.com/andriufit/api-citas-flask.git
 cd api-citas-flask
 code .
 
+## Si no se tiene docker
+
+PS C:\WINDOWS\system32> where docker
+PS C:\WINDOWS\system32> wsl --install
+
+PS C:\WINDOWS\system32> winget install -e --id Docker.DockerDesktop
+
+## Comprobar la instalación
+
+docker --version
+docker compose version
+docker info
+
 ## Montar docker
 
 docker compose config
@@ -11,7 +24,13 @@ docker compose up --build -d
 docker compose ps
 docker compose logs -f
 
-## Caracteristicas Api
+| Servicio    | Estado             | Puertos                                       |
+| ----------- | ------------------ | --------------------------------------------- |
+| **API**     | Activo y saludable | `5001/tcp` — interno de Docker                |
+| **MongoDB** | Activo y saludable | `localhost:27017`                             |
+| **Nginx**   | Activo             | `localhost:5001` → puerto `80` del contenedor |
+
+## Caracteristicas Api http://localhost:5001
 
 | Ruta                 | Para qué sirve                 |
 | -------------------- | ------------------------------ |

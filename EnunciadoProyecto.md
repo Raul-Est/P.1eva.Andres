@@ -43,8 +43,6 @@ https://github.com/andriufit/api-citas-flask.git
 git clone https://github.com/andriufit/api-citas-flask.git
 cd api-citas-flask
 
-docker-compose up --build
-
 ## En local (Desarrollo)
 
 pip install -r requirements.txt
