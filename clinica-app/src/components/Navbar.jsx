@@ -16,7 +16,15 @@ export default function Navbar() {
         <Link to="/dates-by-day" style={{ marginRight: '20px' }}>Citas por Día</Link>
         <Link to="/centers" style={{ marginRight: '20px' }}>Centros</Link>
         <Link to="/profile" style={{ marginRight: '20px' }}>Perfil</Link>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout} style={{ 
+          padding: '8px 16px',
+          backgroundColor: '#FFFAFC',
+          color: '#333',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontWeight: '500'
+        }}>Logout</button>
       </div>
     </nav>
   );

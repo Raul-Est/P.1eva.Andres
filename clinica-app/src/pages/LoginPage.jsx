@@ -56,7 +56,18 @@ export default function LoginPage() {
         <button 
           type="submit" 
           disabled={loading}
-          style={{ width: '100%', padding: '10px', marginBottom: '15px' }}
+          style={{ 
+            width: '100%', 
+            padding: '10px', 
+            marginBottom: '15px',
+            backgroundColor: '#F9FCFF',
+            color: '#333',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            fontWeight: '500',
+            opacity: loading ? 0.6 : 1
+          }}
         >
           {loading ? 'Cargando...' : 'Login'}
         </button>

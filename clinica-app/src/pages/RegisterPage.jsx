@@ -79,7 +79,18 @@ export default function RegisterPage() {
         <button 
           type="submit" 
           disabled={loading}
-          style={{ width: '100%', padding: '10px', marginBottom: '15px' }}
+          style={{ 
+            width: '100%', 
+            padding: '10px', 
+            marginBottom: '15px',
+            backgroundColor: '#F8FFF7',
+            color: '#333',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            fontWeight: '500',
+            opacity: loading ? 0.6 : 1
+          }}
         >
           {loading ? 'Cargando...' : 'Registrar'}
         </button>
