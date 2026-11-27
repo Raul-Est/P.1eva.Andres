@@ -9,20 +9,23 @@ export default function CentersPage() {
   const [address, setAddress] = useState('');
   const [showForm, setShowForm] = useState(false);
 
-  const loadCenters = async () => {
-    try {
-      setLoading(true);
-      const data = await getCenters();
-      setCenters(data);
-    } catch (error) {
-      toast.error('Error al cargar centros');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const controller = new AbortController();
+
+    const loadCenters = async () => {
+      try {
+        setLoading(true);
+        const data = await getCenters(controller.signal);
+        setCenters(data);
+      } catch (error) {
+        toast.error('Error al cargar centros');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadCenters();
+    return () => controller.abort();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -39,7 +42,9 @@ export default function CentersPage() {
       setName('');
       setAddress('');
       setShowForm(false);
-      loadCenters();
+      
+      const data = await getCenters();
+      setCenters(data);
     } catch (error) {
       toast.error('Error al crear centro');
     }

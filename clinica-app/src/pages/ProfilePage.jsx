@@ -8,9 +8,11 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const loadProfile = async () => {
       try {
-        const data = await getProfile();
+        const data = await getProfile(controller.signal);
         setProfile(data);
       } catch (error) {
         toast.error('Error al cargar perfil');
@@ -20,6 +22,7 @@ export default function ProfilePage() {
     };
 
     loadProfile();
+    return () => controller.abort();
   }, []);
 
   if (loading) return <div style={{ padding: '40px' }}>Cargando...</div>;

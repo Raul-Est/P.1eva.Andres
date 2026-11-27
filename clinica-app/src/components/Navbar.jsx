@@ -8,6 +8,7 @@ export default function Navbar() {
 
   return (
     <nav style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
+      
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Link to="/dashboard" style={{ marginRight: '20px' }}>Dashboard</Link>
         <Link to="/my-appointments" style={{ marginRight: '20px' }}>Mis Citas</Link>
@@ -16,6 +17,7 @@ export default function Navbar() {
         <Link to="/dates-by-day" style={{ marginRight: '20px' }}>Citas por Día</Link>
         <Link to="/centers" style={{ marginRight: '20px' }}>Centros</Link>
         <Link to="/profile" style={{ marginRight: '20px' }}>Perfil</Link>
+
         <button onClick={handleLogout} style={{ 
           padding: '8px 16px',
           backgroundColor: '#FFFAFC',
@@ -25,7 +27,9 @@ export default function Navbar() {
           cursor: 'pointer',
           fontWeight: '500'
         }}>Logout</button>
+
       </div>
+
     </nav>
   );
 }
