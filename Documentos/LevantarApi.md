@@ -32,6 +32,8 @@ docker compose logs -f
 
 ## Caracteristicas Api http://localhost:5001
 
+http://localhost:5001/apidocs/
+
 | Ruta                 | Para qué sirve                 |
 | -------------------- | ------------------------------ |
 | GET /profile         | Consultar el propio perfil     |
