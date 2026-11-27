@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { createAppointment } from '../services/appointmentService';
+import { formatAppointmentDate, getNextHour, isFutureAppointment } from '../utils/appointmentDate';
 
 export default function NewAppointmentPage() {
   const [center, setCenter] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(getNextHour);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -15,14 +16,26 @@ export default function NewAppointmentPage() {
       return;
     }
 
+    const formattedDate = formatAppointmentDate(date);
+    if (!formattedDate) {
+      toast.error('Selecciona una fecha válida y una hora en punto');
+      return;
+    }
+
+    if (!isFutureAppointment(date)) {
+      toast.error('Selecciona una fecha y hora futuras');
+      return;
+    }
+
     try {
       setLoading(true);
-      await createAppointment(center, date);
+      await createAppointment(center, formattedDate);
       toast.success('Cita creada exitosamente');
       setCenter('');
-      setDate('');
+      setDate(getNextHour());
     } catch (error) {
-      toast.error('Error al crear cita');
+      const message = error?.error || error?.msg || error?.message;
+      toast.error(typeof message === 'string' ? message : 'Error al crear cita');
     } finally {
       setLoading(false);
     }
@@ -51,9 +64,11 @@ export default function NewAppointmentPage() {
         </div>
 
         <div>
-          <label style={{ display: 'block', marginBottom: '5px' }}>Fecha</label>
+          <label style={{ display: 'block', marginBottom: '5px' }}>Fecha y hora en punto</label>
           <input
             type="datetime-local"
+            step="3600"
+            min={getNextHour()}
             value={date}
             onChange={(e) => setDate(e.target.value)}
             style={{
